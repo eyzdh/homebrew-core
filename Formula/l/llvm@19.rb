@@ -101,7 +101,7 @@ class LlvmAT19 < Formula
     # Work around build failure (maybe from CMake 4 update) by using environment
     # variable for https://cmake.org/cmake/help/latest/variable/CMAKE_OSX_SYSROOT.html
     # TODO: Consider if this should be handled in superenv as impacts other formulae
-    ENV["SDKROOT"] = MacOS.sdk_for_formula(self).path if OS.mac? && MacOS.sdk_root_needed?
+    ENV["SDKROOT"] = MacOS.sdk_for_formula(self).path if OS.mac?
 
     # Apple's libstdc++ is too old to build LLVM
     ENV.libcxx if ENV.compiler == :clang

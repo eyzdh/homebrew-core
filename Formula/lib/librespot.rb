@@ -6,6 +6,11 @@ class Librespot < Formula
   license "MIT"
   head "https://github.com/librespot-org/librespot.git", branch: "dev"
 
+  livecheck do
+    url :stable
+    strategy :github_latest
+  end
+
   bottle do
     sha256 cellar: :any_skip_relocation, arm64_tahoe:   "4a5eff7a184388970a8d538f9018d9a2e2682b7d113f6886269bbc26c0b061c3"
     sha256 cellar: :any_skip_relocation, arm64_sequoia: "95b5b73657b6c6319da0b199ae7e509e8fdd6835e41af52e06537635bb0bbf78"

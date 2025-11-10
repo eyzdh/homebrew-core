@@ -11,6 +11,8 @@ class Topgrade < Formula
     strategy :github_latest
   end
 
+  no_autobump! because: :bumped_by_upstream
+
   bottle do
     sha256 cellar: :any_skip_relocation, arm64_tahoe:   "96dd09d80604a4052f1df24d239d9c3a884900106dfe05d0463b535c71d286f8"
     sha256 cellar: :any_skip_relocation, arm64_sequoia: "df0032bdc7a994892625b2bc08a29c618d88d5f7d21055ee903478042f16a45d"
