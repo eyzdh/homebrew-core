@@ -1,9 +1,9 @@
 class Qtspeech < Formula
   desc "Enables access to text-to-speech engines"
   homepage "https://www.qt.io/"
-  url "https://download.qt.io/official_releases/qt/6.9/6.9.3/submodules/qtspeech-everywhere-src-6.9.3.tar.xz"
-  mirror "https://qt.mirror.constant.com/archive/qt/6.9/6.9.3/submodules/qtspeech-everywhere-src-6.9.3.tar.xz"
-  mirror "https://mirrors.ukfast.co.uk/sites/qt.io/archive/qt/6.9/6.9.3/submodules/qtspeech-everywhere-src-6.9.3.tar.xz"
+  url "https://download.qt.io/official_releases/qt/6.10/6.10.0/submodules/qtspeech-everywhere-src-6.10.0.tar.xz"
+  mirror "https://qt.mirror.constant.com/archive/qt/6.10/6.10.0/submodules/qtspeech-everywhere-src-6.10.0.tar.xz"
+  mirror "https://mirrors.ukfast.co.uk/sites/qt.io/archive/qt/6.10/6.10.0/submodules/qtspeech-everywhere-src-6.10.0.tar.xz"
   sha256 "f86f5a4c742fb86ccc6e90ee72a9213150986575c3d238829a4b48a28bc9ab3e"
   license all_of: [
     { any_of: ["LGPL-3.0-only", "GPL-2.0-only", "GPL-3.0-only"] },
