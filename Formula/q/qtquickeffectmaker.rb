@@ -18,10 +18,10 @@ class Qtquickeffectmaker < Formula
   depends_on "cmake" => :build
   depends_on "ninja" => :build
 
-  depends_on "qtbase"
-  depends_on "qtdeclarative"
-  depends_on "qtquick3d"
-  depends_on "qtshadertools"
+  depends_on "eyzdh/core/qtbase"
+  depends_on "eyzdh/core/qtdeclarative"
+  depends_on "eyzdh/core/qtquick3d"
+  depends_on "eyzdh/core/qtshadertools"
 
   # TODO: preserve_rpath # https://github.com/orgs/Homebrew/discussions/2823
 
