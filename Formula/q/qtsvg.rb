@@ -15,15 +15,6 @@ class Qtsvg < Formula
     formula "qtbase"
   end
 
-  bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "1b999d5ec5374d07bf0bd9054bbfa07e5c99600a2a66ac1443a60f82db322ca8"
-    sha256 cellar: :any,                 arm64_sequoia: "1c957a3056610a7c6df750b38cb77e1f36be981755f8c6b13be05fd5bd9c0b15"
-    sha256 cellar: :any,                 arm64_sonoma:  "207ffa2660c6101fcdaeb82fb96f3f4fe01908c0c8e5d5768857ed74dfaca5cb"
-    sha256 cellar: :any,                 sonoma:        "25d2a966b420dedf3c935cb08339b4b57bc0fccf3e9c6e21f754cd82fdb6e819"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "7cbfec9d62bdfca1c483c1cd565ee4d3b1c436dd200063a81efc00ff02484227"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "0520e7c62d0c903d2bd5a75c5e8493ea13e0f21b0dd8d72c96e5f65a17509eee"
-  end
-
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
   depends_on "pkgconf" => :test
