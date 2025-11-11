@@ -19,15 +19,6 @@ class Qtmultimedia < Formula
     formula "qtbase"
   end
 
-  bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "8c98117497f1e2f5bd945d05bc3b3f067d7bd5bd3c905f48d702f3ea57805d2c"
-    sha256 cellar: :any,                 arm64_sequoia: "6b3f315f1376b882bbaa53ae8aa1e2332f4d59bfb3dfdc66707f960f7062792d"
-    sha256 cellar: :any,                 arm64_sonoma:  "2e907662de15c622360bc5b660cbf65161b6751f4014ec32cc0fe1c2d985b545"
-    sha256 cellar: :any,                 sonoma:        "d3e94fc3374bd95e2239c636fd8919153d9a1211844070993086b373d98218ab"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "8091085974b33f71688fda156e04ac91ff9c62e87334f4464746cc7a6b96dfe3"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "ecbdada04e1d7ec73800531f1f3bd52a9f6bea16f12b54e8ceb12f3b4b64b31f"
-  end
-
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
   depends_on "qtshadertools" => :build
