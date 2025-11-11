@@ -19,7 +19,7 @@ class Qtserialport < Formula
   depends_on "ninja" => :build
   depends_on "pkgconf" => :test
 
-  depends_on "qtbase"
+  depends_on "eyzdh/core/qtbase"
 
   on_linux do
     depends_on "pkgconf" => :build
