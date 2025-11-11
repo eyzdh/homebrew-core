@@ -15,15 +15,6 @@ class Qtcharts < Formula
     formula "qtbase"
   end
 
-  bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "6989029968b93881caad18fdd1d934a393278d91b6c011c04b830b36516dc952"
-    sha256 cellar: :any,                 arm64_sequoia: "b9c242e1bb487a6685ace068cca91117ea9635069487bb307ee3bb5116e46bd2"
-    sha256 cellar: :any,                 arm64_sonoma:  "adace123938506892453c5de1fb2c7cbc736fd6ea57f7b47af7c2a39ae331049"
-    sha256 cellar: :any,                 sonoma:        "9f6eaf6f26e846c925c3d864df798afae8333d094552b82c72c70fe3500079ed"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "47297c9dcac8c10f8a05b858c64e129229e12dda31f44a8b9145436b31a43126"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5efe0fadc5a94b8c80105e862e8bad18ade727945d3bc78072c2bfe5ecdc9871"
-  end
-
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
   depends_on "pkgconf" => :test
