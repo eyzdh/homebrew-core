@@ -23,8 +23,8 @@ class Qtdeclarative < Formula
   depends_on "qtshadertools" => :build
   depends_on "vulkan-headers" => :build
 
-  depends_on "qtbase"
-  depends_on "qtsvg"
+  depends_on "eyzdh/core/qtbase"
+  depends_on "eyzdh/core/qtsvg"
 
   uses_from_macos "python" => :build
 
