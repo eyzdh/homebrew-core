@@ -15,14 +15,6 @@ class Qtwebview < Formula
     formula "qtbase"
   end
 
-  bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "4d52e628774a62aa29e98f9009379983ea83368d0e77c3e99b56e6b6f1c0fedc"
-    sha256 cellar: :any,                 arm64_sequoia: "1072fc879e5334907231e52b4e44a19a5b3987a43c1772ca45f9789a5d09a103"
-    sha256 cellar: :any,                 arm64_sonoma:  "5c11fbaba791f6ff23ce41077739a44efd440b46ee12e37ec99b9d5502afaba0"
-    sha256 cellar: :any,                 sonoma:        "3b1d771cdd26b94632867a14fcb81b237ed4623ac11e716ce0ef9a6cf14d37e9"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "8fd896feb109232e1871f3b4fdb259ec86c7f5f93e1502ee7566ec3a52fb8bcd"
-  end
-
   depends_on "cmake" => :build
   depends_on "ninja" => :build
 
