@@ -11,14 +11,6 @@ class QtUnixodbc < Formula
     formula "qtbase"
   end
 
-  bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "1589d4a98b18cf52d15a61dace7830fcd03d6211f69b64e1b0c4863768e6d8c5"
-    sha256 cellar: :any,                 arm64_sequoia: "1b5461acec7bba9750afa1b51ef716925c4ff20d09964752492adbce9f500682"
-    sha256 cellar: :any,                 arm64_sonoma:  "5fabce420fa3ed6a8d5021867eaaeb9b3f9e34d0dff991ced59092dd0bed52c0"
-    sha256 cellar: :any,                 sonoma:        "1d1036ee7ba9efad7060650522a428d46245b69adeaab8458ca81620ae72e736"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5e86a8aaf55ee4bce3c938528d25666bc1fb980cca69953d714d18dd4c2ebfa5"
-  end
-
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
 
