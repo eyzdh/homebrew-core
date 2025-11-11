@@ -19,8 +19,8 @@ class Qthttpserver < Formula
   depends_on "ninja" => :build
   depends_on "pkgconf" => :test
 
-  depends_on "qtbase"
-  depends_on "qtwebsockets"
+  depends_on "eyzdh/core/qtbase"
+  depends_on "eyzdh/core/qtwebsockets"
 
   # TODO: preserve_rpath # https://github.com/orgs/Homebrew/discussions/2823
 
