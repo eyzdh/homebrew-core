@@ -31,8 +31,8 @@ class Qttools < Formula
   depends_on "vulkan-headers" => :build
 
   depends_on "litehtml"
-  depends_on "qtbase"
-  depends_on "qtdeclarative"
+  depends_on "eyzdh/core/qtbase"
+  depends_on "eyzdh/core/qtdeclarative"
   depends_on "zstd"
 
   on_macos do
