@@ -20,16 +20,6 @@ class Qtbase < Formula
     regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
 
-  bottle do
-    rebuild 1
-    sha256 cellar: :any,                 arm64_tahoe:   "b71662b2a584d66df3cb7693453c0c685aeaac59bdbebf09c6525a95336c92d8"
-    sha256 cellar: :any,                 arm64_sequoia: "e01b6da67665aacb7251e9402f9ff61cdf15eefbe18d3bd162a4f031e24b0375"
-    sha256 cellar: :any,                 arm64_sonoma:  "e5e9230b6d4d803f2c82d317832ef225debd4218b0289ea58e1e2abffbb4f62a"
-    sha256 cellar: :any,                 sonoma:        "ea8dd5c6dd29e5d2c8477024026cb841d0982f01b3d698bd2751bff1875b3656"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "b0790ab124d71c60905dcc5d6a9023b9aebe0392c9e374422341eb3a2e068b95"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d65327cb727685833b1706b1f431d61bc80e4172526fb8a61c27870979d1bbee"
-  end
-
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
   depends_on "pkgconf" => [:build, :test]
