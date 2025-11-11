@@ -20,11 +20,11 @@ class Qtgraphs < Formula
   depends_on "pkgconf" => :test
 
   depends_on "qtbase"
-  depends_on "qtdeclarative"
-  depends_on "qtquick3d"
+  depends_on "eyzdh/core/qtdeclarative"
+  depends_on "eyzdh/core/qtquick3d"
 
   on_macos do
-    depends_on "qtshadertools"
+    depends_on "eyzdh/core/qtshadertools"
   end
 
   # TODO: preserve_rpath # https://github.com/orgs/Homebrew/discussions/2823
