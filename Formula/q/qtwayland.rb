@@ -27,10 +27,10 @@ class Qtwayland < Formula
   depends_on "libxkbcommon"
   depends_on :linux
   depends_on "mesa"
-  depends_on "qtbase"
-  depends_on "qtdeclarative"
-  depends_on "qtsvg"
-  depends_on "wayland"
+  depends_on "eyzdh/core/qtbase"
+  depends_on "eyzdh/core/qtdeclarative"
+  depends_on "eyzdh/core/qtsvg"
+  depends_on "eyzdh/core/wayland"
 
   # TODO: preserve_rpath # https://github.com/orgs/Homebrew/discussions/2823
 
