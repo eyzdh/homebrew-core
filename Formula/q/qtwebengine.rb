@@ -39,16 +39,16 @@ class Qtwebengine < Formula
   depends_on "node" => :build
   depends_on "pkgconf" => [:build, :test]
   depends_on "python@3.13" => :build
-  depends_on "qttools" => :build
+  depends_on "eyzdh/core/qttools" => :build
   # Chromium needs Xcode 15.3+ and using LLVM Clang is not supported on macOS
   # See https://bugreports.qt.io/browse/QTBUG-130922
   depends_on xcode: ["15.3", :build] # for metal and xcodebuild
 
   depends_on "libpng"
-  depends_on "qtbase"
-  depends_on "qtdeclarative"
-  depends_on "qtpositioning"
-  depends_on "qtwebchannel"
+  depends_on "eyzdh/core/qtbase"
+  depends_on "eyzdh/core/qtdeclarative"
+  depends_on "eyzdh/core/qtpositioning"
+  depends_on "eyzdh/core/qtwebchannel"
 
   uses_from_macos "bison" => :build
   uses_from_macos "flex" => :build
@@ -58,7 +58,7 @@ class Qtwebengine < Formula
   uses_from_macos "zlib"
 
   on_macos do
-    depends_on "qttools"
+    depends_on "eyzdh/core/qttools"
   end
 
   on_linux do
