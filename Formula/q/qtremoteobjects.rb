@@ -20,8 +20,8 @@ class Qtremoteobjects < Formula
   depends_on "ninja" => :build
   depends_on "pkgconf" => :test
 
-  depends_on "qtbase"
-  depends_on "qtdeclarative"
+  depends_on "eyzdh/core/qtbase"
+  depends_on "eyzdh/core/qtdeclarative"
 
   # TODO: preserve_rpath # https://github.com/orgs/Homebrew/discussions/2823
 
