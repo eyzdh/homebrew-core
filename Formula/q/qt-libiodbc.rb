@@ -11,14 +11,6 @@ class QtLibiodbc < Formula
     formula "qtbase"
   end
 
-  bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "e58c533025f682ab28db1f89b4d387adde80ffd79c50cbec4e309d62519f216d"
-    sha256 cellar: :any,                 arm64_sequoia: "4ccdf342b8c7337adfee162e55019309d4881488d9ca82d8c09bfc8188e0a33c"
-    sha256 cellar: :any,                 arm64_sonoma:  "b82851f36abd77784695c2454222fd0acbe639e91175fa4d36c9400d9f8294a3"
-    sha256 cellar: :any,                 sonoma:        "48dc97a37314f751e4a622a4e61e01636951dcad7ea5a8acfab52395309477f5"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "4486a9c6a15694766d15887f3e6f888932fccea893b7977d4615aff95316d4e7"
-  end
-
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
 
