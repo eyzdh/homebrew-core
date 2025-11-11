@@ -7,7 +7,7 @@ class Qtkeychain < Formula
 
   depends_on "cmake" => :build
   depends_on "pkgconf" => :build
-  depends_on "qtbase"
+  depends_on "eyzdh/core/qtbase"
 
   on_linux do
     depends_on "glib"
