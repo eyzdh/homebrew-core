@@ -14,8 +14,8 @@ class QtPostgresql < Formula
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
 
-  depends_on "libpq"
-  depends_on "qtbase"
+  depends_on "eyzdh/core/libpq"
+  depends_on "eyzdh/core/qtbase"
 
   def install
     args = %w[
