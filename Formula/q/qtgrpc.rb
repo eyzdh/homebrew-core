@@ -23,8 +23,8 @@ class Qtgrpc < Formula
 
   depends_on "abseil"
   depends_on "protobuf"
-  depends_on "qtbase"
-  depends_on "qtdeclarative"
+  depends_on "eyzdh/core/qtbase"
+  depends_on "eyzdh/core/qtdeclarative"
 
   # TODO: preserve_rpath # https://github.com/orgs/Homebrew/discussions/2823
 
