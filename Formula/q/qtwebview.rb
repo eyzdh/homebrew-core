@@ -18,13 +18,13 @@ class Qtwebview < Formula
   depends_on "cmake" => :build
   depends_on "ninja" => :build
 
-  depends_on "qtbase"
-  depends_on "qtdeclarative"
-  depends_on "qtwebengine"
+  depends_on "eyzdh/core/qtbase"
+  depends_on "eyzdh/core/qtdeclarative"
+  depends_on "eyzdh/core/qtwebengine"
 
   on_macos do
-    depends_on "qtpositioning"
-    depends_on "qtwebchannel"
+    depends_on "eyzdh/core/qtpositioning"
+    depends_on "eyzdh/core/qtwebchannel"
   end
 
   # TODO: preserve_rpath # https://github.com/orgs/Homebrew/discussions/2823
