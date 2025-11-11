@@ -15,15 +15,6 @@ class Qtimageformats < Formula
     formula "qtbase"
   end
 
-  bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "9f36e8943686802d046651f233ff63386c126443cd3bd9bd92e55940e1a93124"
-    sha256 cellar: :any,                 arm64_sequoia: "4730520a5ffe2a0dc02b4037bbb073cae05e5b8926ca9786cb76cfb03e6da177"
-    sha256 cellar: :any,                 arm64_sonoma:  "9e8c7cc840f05e1babafbcb767e5e5ed6e47d5cd48d2592579a09910d1b02894"
-    sha256 cellar: :any,                 sonoma:        "87cd8046387e13613f6b04d1d60d3c45340cc16201db30f32f9e4c45113f7fd8"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "9a23663253c2382fadb27f04600d5b4f1e78f2d5b349643086e313cb9d928e82"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "6bc7a304fcdfb672f8205bbfc268dc9bddb35a5ee6bf58ffdb329aa4fc0bd4ef"
-  end
-
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
   depends_on "pkgconf" => :test
