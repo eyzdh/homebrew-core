@@ -14,8 +14,8 @@ class Qttranslations < Formula
 
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
-  depends_on "qtbase" => [:build, :test]
-  depends_on "qttools" => :build
+  depends_on "eyzdh/core/qtbase" => [:build, :test]
+  depends_on "eyzdh/core/qttools" => :build
 
   # TODO: preserve_rpath # https://github.com/orgs/Homebrew/discussions/2823
 
