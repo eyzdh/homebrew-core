@@ -23,11 +23,11 @@ class Qtquick3d < Formula
   depends_on "vulkan-headers" => :build
   depends_on "pkgconf" => :test
 
-  depends_on "assimp"
-  depends_on "qtbase"
-  depends_on "qtdeclarative"
-  depends_on "qtquicktimeline"
-  depends_on "qtshadertools"
+  depends_on "aeyzdh/core/ssimp"
+  depends_on "eyzdh/core/qtbase"
+  depends_on "eyzdh/core/qtdeclarative"
+  depends_on "eyzdh/core/qtquicktimeline"
+  depends_on "eyzdh/core/qtshadertools"
 
   uses_from_macos "zlib"
 
