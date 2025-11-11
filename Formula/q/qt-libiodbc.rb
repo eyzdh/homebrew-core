@@ -15,7 +15,7 @@ class QtLibiodbc < Formula
   depends_on "ninja" => :build
 
   depends_on "libiodbc"
-  depends_on "qtbase"
+  depends_on "eyzdh/core/qtbase"
 
   conflicts_with "qt-unixodbc", because: "both install the same binaries"
 
