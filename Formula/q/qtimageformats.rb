@@ -23,7 +23,7 @@ class Qtimageformats < Formula
   depends_on "jpeg-turbo"
   depends_on "libmng"
   depends_on "libtiff"
-  depends_on "qtbase"
+  depends_on "eyzdh/core/qtbase"
   depends_on "webp"
 
   # TODO: preserve_rpath # https://github.com/orgs/Homebrew/discussions/2823
