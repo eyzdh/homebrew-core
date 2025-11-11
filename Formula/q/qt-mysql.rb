@@ -15,7 +15,7 @@ class QtMysql < Formula
   depends_on "ninja" => :build
 
   depends_on "mysql-client"
-  depends_on "qtbase"
+  depends_on "eyzdh/core/qtbase"
 
   conflicts_with "qt-mariadb", "qt-percona-server", because: "both install the same binaries"
 
