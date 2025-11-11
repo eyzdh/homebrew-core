@@ -18,14 +18,6 @@ class Qt < Formula
     formula "qtbase"
   end
 
-  bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "a7a8f4d26c4a05521c4710b9344bc4bdb1b7e17af9aecf865a7568c054d2828f"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "a7a8f4d26c4a05521c4710b9344bc4bdb1b7e17af9aecf865a7568c054d2828f"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "a7a8f4d26c4a05521c4710b9344bc4bdb1b7e17af9aecf865a7568c054d2828f"
-    sha256 cellar: :any_skip_relocation, sonoma:        "a7a8f4d26c4a05521c4710b9344bc4bdb1b7e17af9aecf865a7568c054d2828f"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "871c7faf37bbad450a86c91ca3201123d152d8decc879041193f5b5af07633a5"
-  end
-
   depends_on "cmake" => :test
   depends_on "pkgconf" => :test
   depends_on "vulkan-headers" => :test
