@@ -19,7 +19,7 @@ class Qtconnectivity < Formula
   depends_on "ninja" => :build
   depends_on "pkgconf" => :test
 
-  depends_on "qtbase"
+  depends_on "eyzdh/core/qtbase"
 
   uses_from_macos "pcsc-lite"
 
