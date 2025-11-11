@@ -12,12 +12,13 @@ class Fastfetch < Formula
   end
 
   bottle do
-    sha256                               arm64_tahoe:   "9f218f98f166fc849ec6ca2aae405466df21fe380c3e3d9d53ec53a299baa055"
-    sha256                               arm64_sequoia: "4979552992daef909878c011fb0eb752887d8c490dc11287c4a731cb648c1548"
-    sha256                               arm64_sonoma:  "8c383b00f7c7d136286a2b072a81c1558c0f649a9791754281f587c2b10ef152"
-    sha256 cellar: :any_skip_relocation, sonoma:        "5e6ec460f83c8a70009afe6f2678ebf53d4a4ac772aa843c4f191924de281b3d"
-    sha256                               arm64_linux:   "59d97eac1ef726451e138cb249a8fe145365bc1dc07c39a4ba30e03a1534ac55"
-    sha256                               x86_64_linux:  "424c53ca9d6a4c6756ab384d0662242d17e4d485187af4bb9e98ded87b1bc143"
+    rebuild 1
+    sha256               arm64_tahoe:   "893ea6859cfbefc195d7e5e7732308597ee562cdf4753e5f1ad16e0f6577492e"
+    sha256               arm64_sequoia: "54a256d6b044c3b0f39ae0ecb381b6d686ea51f746a636584854684eff54b789"
+    sha256               arm64_sonoma:  "3162465d36004703b88c5b578b9d52466b9fcaa4844cba7967101d3e8ec56f65"
+    sha256 cellar: :any, sonoma:        "d10280764e388cdd8397f26f0a56f9dd305a59f3ae0a02a3a17bd0ca8f2ea1c2"
+    sha256               arm64_linux:   "11df2217778076632a137a314de20b349ed8f6ceb6cf2c91c565c529585fc5b6"
+    sha256               x86_64_linux:  "7bf0f1b8a9e099bd73cb997ba93f7c70dd09e4997063767d75d54908f9264c7b"
   end
 
   depends_on "chafa" => :build
@@ -27,6 +28,7 @@ class Fastfetch < Formula
   depends_on "pkgconf" => :build
   depends_on "python@3.14" => :build
   depends_on "vulkan-loader" => :build
+  depends_on "yyjson"
 
   uses_from_macos "sqlite" => :build
   uses_from_macos "zlib" => :build
@@ -50,8 +52,12 @@ class Fastfetch < Formula
     args = %W[
       -DCMAKE_INSTALL_SYSCONFDIR=#{etc}
       -DBUILD_FLASHFETCH=OFF
-      -DENABLE_SYSTEM_YYJSON=OFF
+      -DENABLE_SYSTEM_YYJSON=ON
     ]
+    if HOMEBREW_PREFIX.to_s != HOMEBREW_DEFAULT_PREFIX
+      # CMake already adds default Homebrew prefixes to rpath.
+      args << "-DCMAKE_EXE_LINKER_FLAGS=-Wl,-rpath,#{HOMEBREW_PREFIX}/lib"
+    end
     system "cmake", "-S", ".", "-B", "build", *args, *std_cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build"

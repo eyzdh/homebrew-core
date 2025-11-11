@@ -1,24 +1,17 @@
 class Pedump < Formula
   desc "Dump Windows PE files using Ruby"
   homepage "https://pedump.me"
-  url "https://github.com/zed-0xff/pedump/archive/refs/tags/v0.6.10.tar.gz"
-  sha256 "fd31800d4e1e6d3cf0116b9b1a5565cde4bfc684bea3bab5a39b58745b44c3f6"
+  url "https://github.com/zed-0xff/pedump/archive/refs/tags/v0.7.1.tar.gz"
+  sha256 "aadbfc49e33f0e77501ebfb5fd231ea50737918e862092feb683e3e3f522a95d"
   license "MIT"
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, all: "46e2e44dae5cd4974173e1a271d602c131ecb1557869a6bd9dc979a672605d3f"
+    sha256 cellar: :any_skip_relocation, all: "3ce28d732a7b725eeb43ccee3c05cab2d36cc0b680fe2a19c20a366833c1370e"
   end
 
   depends_on "ruby"
 
   conflicts_with "mono", because: "both install `pedump` binaries"
-
-  # Backport Gemfile.lock update to fix build on newer Ruby
-  patch do
-    url "https://github.com/zed-0xff/pedump/commit/55072547f30bc4377add1c47a8f0022183b7292d.patch?full_index=1"
-    sha256 "fdb5e6dc525c55b449afbb3082c72270f7512bdfc8e78ae08c99fb169a067efd"
-  end
 
   def install
     ENV["BUNDLE_VERSION"] = "system" # Avoid installing Bundler into the keg
