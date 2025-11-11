@@ -4,7 +4,7 @@ class QtMysql < Formula
   url "https://download.qt.io/official_releases/qt/6.10/6.10.0/submodules/qtbase-everywhere-src-6.10.0.tar.xz"
   mirror "https://qt.mirror.constant.com/archive/qt/6.10/6.10.0/submodules/qtbase-everywhere-src-6.10.0.tar.xz"
   mirror "https://mirrors.ukfast.co.uk/sites/qt.io/archive/qt/6.10/6.10.0/submodules/qtbase-everywhere-src-6.10.0.tar.xz"
-  sha256 "c5a1a2f660356ec081febfa782998ae5ddbc5925117e64f50e4be9cd45b8dc6e"
+  sha256 "ead4623bcb54a32257c5b3e3a5aec6d16ec96f4cda58d2e003f5a0c16f72046d"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only", "LGPL-3.0-only"]
 
   livecheck do
@@ -16,21 +16,19 @@ class QtMysql < Formula
     sha256 cellar: :any,                 arm64_sequoia: "cb39625e7ecc3d831816a78ded763f008b17638f06a6b805ff073f1af0a7c25d"
     sha256 cellar: :any,                 arm64_sonoma:  "5e657faa6c8719a3ec947b74be625ab0aa69fa8cfa300ae9abeddd7fdfe27651"
     sha256 cellar: :any,                 sonoma:        "4eb26a9b9cc88ebb0a67577fb709b5a6695e545eca42f4031b9a04551e11bd5c"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "1cba2d622571e3a5bf15d541102f60280ea2dd7d6d20b6588ddec79397b2f4ac"
     sha256 cellar: :any_skip_relocation, x86_64_linux:  "d512ed74acd9d1509d6d0e9ee829ca01cdb0e4d2ce96904a1a0c196587e3ad3e"
   end
 
   depends_on "cmake" => [:build, :test]
+  depends_on "ninja" => :build
 
-  depends_on "mysql"
+  depends_on "mysql-client"
   depends_on "qtbase"
 
-  conflicts_with "qt-mariadb", "qt-percona-server",
-    because: "qt-mysql, qt-mariadb, and qt-percona-server install the same binaries"
+  conflicts_with "qt-mariadb", "qt-percona-server", because: "both install the same binaries"
 
   def install
-    args = %W[
-      -DCMAKE_STAGING_PREFIX=#{prefix}
+    args = %w[
       -DFEATURE_sql_ibase=OFF
       -DFEATURE_sql_mysql=ON
       -DFEATURE_sql_oci=OFF
@@ -39,24 +37,23 @@ class QtMysql < Formula
       -DFEATURE_sql_sqlite=OFF
       -DQT_GENERATE_SBOM=OFF
     ]
-    args << "-DQT_NO_APPLE_SDK_AND_XCODE_CHECK=ON" if OS.mac?
+    if OS.mac?
+      args << "-DQT_EXTRA_RPATHS=#{(HOMEBREW_PREFIX/"lib").relative_path_from(lib)}"
+      args << "-DQT_NO_APPLE_SDK_AND_XCODE_CHECK=ON"
+    end
 
-    system "cmake", "-S", "src/plugins/sqldrivers", "-B", "build", *args, *std_cmake_args
+    system "cmake", "-S", "src/plugins/sqldrivers", "-B", "build", "-G", "Ninja", *args, *std_cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build"
   end
 
   test do
     (testpath/"CMakeLists.txt").write <<~CMAKE
-      cmake_minimum_required(VERSION #{Formula["cmake"].version})
+      cmake_minimum_required(VERSION 4.0)
       project(test VERSION 1.0.0 LANGUAGES CXX)
-      set(CMAKE_CXX_STANDARD 17)
-      set(CMAKE_CXX_STANDARD_REQUIRED ON)
-      set(CMAKE_AUTOMOC ON)
-      set(CMAKE_AUTORCC ON)
-      set(CMAKE_AUTOUIC ON)
       find_package(Qt6 COMPONENTS Core Sql REQUIRED)
-      add_executable(test main.cpp)
+      qt_standard_project_setup()
+      qt_add_executable(test main.cpp)
       target_link_libraries(test PRIVATE Qt6::Core Qt6::Sql)
     CMAKE
 
@@ -76,7 +73,6 @@ class QtMysql < Formula
       #include <cassert>
       int main(int argc, char *argv[])
       {
-        QCoreApplication::addLibraryPath("#{share}/qt/plugins");
         QCoreApplication a(argc, argv);
         QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
         assert(db.isValid());
@@ -85,7 +81,7 @@ class QtMysql < Formula
     CPP
 
     ENV["LC_ALL"] = "en_US.UTF-8"
-    system "cmake", "-S", ".", "-B", "build", "-DCMAKE_BUILD_TYPE=Debug"
+    system "cmake", "-S", ".", "-B", "build", "-DCMAKE_BUILD_RPATH=#{HOMEBREW_PREFIX}/lib"
     system "cmake", "--build", "build"
     system "./build/test"
 

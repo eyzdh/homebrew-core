@@ -5,7 +5,7 @@ class Qt < Formula
   mirror "https://qt.mirror.constant.com/archive/qt/6.10/6.10.0/submodules/md5sums.txt"
   mirror "https://mirrors.ukfast.co.uk/sites/qt.io/archive/qt/6.10/6.10.0/submodules/md5sums.txt"
   version "6.10.0"
-  sha256 "6da59a97380cfb2dd7e93c8172e794f2cc2ccc6ab29620689932ee3b8169c964"
+  sha256 "f84e7f1240469b4af7cb2695eda67f4f181cc50d24e615a10f223371379858ab"
   license all_of: [
     "BSD-3-Clause",
     "GFDL-1.3-no-invariants-only",
@@ -23,7 +23,6 @@ class Qt < Formula
     sha256 cellar: :any_skip_relocation, arm64_sequoia: "a7a8f4d26c4a05521c4710b9344bc4bdb1b7e17af9aecf865a7568c054d2828f"
     sha256 cellar: :any_skip_relocation, arm64_sonoma:  "a7a8f4d26c4a05521c4710b9344bc4bdb1b7e17af9aecf865a7568c054d2828f"
     sha256 cellar: :any_skip_relocation, sonoma:        "a7a8f4d26c4a05521c4710b9344bc4bdb1b7e17af9aecf865a7568c054d2828f"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "99d36053c1ce8a9c612ccfb86dc14de602e8c52d5971a9cba72616409ebb94ba"
     sha256 cellar: :any_skip_relocation, x86_64_linux:  "871c7faf37bbad450a86c91ca3201123d152d8decc879041193f5b5af07633a5"
   end
 
@@ -66,38 +65,20 @@ class Qt < Formula
   depends_on "qtwebchannel"
   depends_on "qtwebsockets"
 
-  on_sonoma :or_newer do
+  on_system :linux, macos: :sonoma_or_newer do
     depends_on "qtwebengine"
     depends_on "qtwebview"
   end
 
   on_linux do
     depends_on "qtwayland"
-
-    # TODO: Add dependencies on all Linux when `qtwebengine` is bottled on arm64 Linux
-    on_intel do
-      depends_on "qtwebengine"
-      depends_on "qtwebview"
-    end
-  end
-
-  def webengine_supported?
-    on_sonoma :or_newer do
-      return true
-    end
-    on_linux do
-      on_intel do
-        return true
-      end
-    end
-    false
   end
 
   def install
     # Check for any new formulae that need to be created before bottling
     if build.bottle?
       submodules = File.read("md5sums.txt").scan(/^\h+[ \t]+(\S+)-everywhere-src-/i).flatten.to_set
-      submodules -= ["qtwebengine", "qtwebview"] unless webengine_supported?
+      submodules -= ["qtwebengine", "qtwebview"] if OS.mac? && MacOS.version < :sonoma
       submodules.delete("qtwayland") unless OS.linux?
       submodules.delete("qtactiveqt") # Windows-only
       submodules.delete("qtdoc") # skip HTML documentation
@@ -143,8 +124,9 @@ class Qt < Formula
   end
 
   test do
+    webengine_supported = !OS.mac? || MacOS.version > :ventura
     modules = %w[Core Gui Widgets Sql Concurrent 3DCore Svg Quick3D Network NetworkAuth]
-    modules << "WebEngineCore" if webengine_supported?
+    modules << "WebEngineCore" if webengine_supported
 
     (testpath/"CMakeLists.txt").write <<~CMAKE
       cmake_minimum_required(VERSION 4.0)
@@ -176,7 +158,7 @@ class Qt < Formula
       #include <QtSvg>
       #include <QDebug>
       #include <QVulkanInstance>
-      #{"#include <QtWebEngineCore>" if webengine_supported?}
+      #{"#include <QtWebEngineCore>" if webengine_supported}
       #include <iostream>
 
       int main(int argc, char *argv[])
@@ -209,7 +191,7 @@ class Qt < Formula
     ENV["LC_ALL"] = "en_US.UTF-8"
     ENV["QT_QPA_PLATFORM"] = "minimal" if OS.linux? && ENV["HOMEBREW_GITHUB_ACTIONS"]
 
-    system "cmake", "-S", ".", "-B", "cmake"
+    system "cmake", "-S", ".", "-B", "cmake", "-DCMAKE_BUILD_RPATH=#{HOMEBREW_PREFIX}/lib"
     system "cmake", "--build", "cmake"
     system "./cmake/test"
 
@@ -221,7 +203,7 @@ class Qt < Formula
     end
 
     flags = shell_output("pkgconf --cflags --libs Qt6#{modules.join(" Qt6")}").chomp.split
-    system ENV.cxx, "-std=c++17", "main.cpp", "-o", "test", *flags
+    system ENV.cxx, "-std=c++17", "main.cpp", "-o", "test", *flags, "-Wl,-rpath,#{HOMEBREW_PREFIX}/lib"
     system "./test"
 
     # Check QT_INSTALL_PREFIX is HOMEBREW_PREFIX to support split `qt-*` formulae

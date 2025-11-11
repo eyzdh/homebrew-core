@@ -4,14 +4,13 @@ class Qtgrpc < Formula
   url "https://download.qt.io/official_releases/qt/6.10/6.10.0/submodules/qtgrpc-everywhere-src-6.10.0.tar.xz"
   mirror "https://qt.mirror.constant.com/archive/qt/6.10/6.10.0/submodules/qtgrpc-everywhere-src-6.10.0.tar.xz"
   mirror "https://mirrors.ukfast.co.uk/sites/qt.io/archive/qt/6.10/6.10.0/submodules/qtgrpc-everywhere-src-6.10.0.tar.xz"
-  sha256 "7963c879cb72d5bebea1724602e6896cdc26e8555d872259f217c6b1130afe02"
+  sha256 "fb722289066101ae08865378e7fb29a22b416a71f6b1c19ae5a957f53a91a445"
   license all_of: [
     "GPL-3.0-only", # QtGrpc
     { any_of: ["LGPL-3.0-only", "GPL-2.0-only", "GPL-3.0-only"] }, # QtProtobuf
     { "GPL-3.0-only" => { with: "Qt-GPL-exception-1.0" } }, # qtgrpcgen; qtprotobufgen
     "BSD-3-Clause", # *.cmake
   ]
-  revision 1
   head "https://code.qt.io/qt/qtgrpc.git", branch: "dev"
 
   livecheck do
@@ -19,12 +18,12 @@ class Qtgrpc < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "024146b259e09d6a9b08e4ce0476a159e9f630d510a3c6cc3a74649dff6f9328"
-    sha256 cellar: :any,                 arm64_sequoia: "1ca2018114dda5ad5ce0be7bfe2d56414222f2bbebe5d89bfceca07ce710e917"
-    sha256 cellar: :any,                 arm64_sonoma:  "ec2fb21e611a02008d174bd22ec22c172e3687b6e5013146db227ebd39e69dc1"
-    sha256 cellar: :any,                 sonoma:        "82d423e172d378e8d8acf454ed82add86279dc7793b9eca9ef9bb95b6b25c8ce"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "58c4c6ad6149807a3c7a41f2a2074feef44c6c1fbcc3685245c1ae42a6e022ff"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "cad946ebb98bdd45217d6aee72ecaeba59554aaaed4e1b33c1a3083449908e34"
+    sha256 cellar: :any,                 arm64_tahoe:   "87c2e77be4bab65bb99e4f573260c65174247381092b99518a2c14f0d8f65769"
+    sha256 cellar: :any,                 arm64_sequoia: "233ef57468ad5b651a2d37c8ab975f06d0827a4c11fc12d3dad58761c42d23db"
+    sha256 cellar: :any,                 arm64_sonoma:  "5fbd8ba7577a6a7cc06c23b0f1d35423e6871831c108eaccc758945ca67a3b88"
+    sha256 cellar: :any,                 sonoma:        "9f0602afced7f21647cf8d548186c9acf92020238ba19084eed864fc30657cbc"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "9ca10aa2fec7703dedb97d06cfbb5bccb1a215b71756cc7f6013b70e0a1a94fb"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "1aa06fdc8411750fe70d995864f44c43b9df825cddea956ded2309d8f324b230"
   end
 
   depends_on "cmake" => [:build, :test]
@@ -36,12 +35,16 @@ class Qtgrpc < Formula
   depends_on "qtbase"
   depends_on "qtdeclarative"
 
-  def install
-    args = ["-DCMAKE_STAGING_PREFIX=#{prefix}"]
-    args << "-DQT_NO_APPLE_SDK_AND_XCODE_CHECK=ON" if OS.mac?
+  # TODO: preserve_rpath # https://github.com/orgs/Homebrew/discussions/2823
 
-    system "cmake", "-S", ".", "-B", "build", "-G", "Ninja",
-                    *args, *std_cmake_args(install_prefix: HOMEBREW_PREFIX, find_framework: "FIRST")
+  def install
+    args = []
+    if OS.mac?
+      args << "-DQT_EXTRA_RPATHS=#{(HOMEBREW_PREFIX/"lib").relative_path_from(lib)}"
+      args << "-DQT_NO_APPLE_SDK_AND_XCODE_CHECK=ON"
+    end
+
+    system "cmake", "-S", ".", "-B", "build", "-G", "Ninja", *args, *std_cmake_args(find_framework: "FIRST")
     system "cmake", "--build", "build"
     system "cmake", "--install", "build"
 
@@ -94,7 +97,7 @@ class Qtgrpc < Formula
       }
     CPP
 
-    system "cmake", "-S", ".", "-B", "."
+    system "cmake", "-S", ".", "-B", ".", "-DCMAKE_BUILD_RPATH=#{HOMEBREW_PREFIX}/lib"
     system "cmake", "--build", "."
     system "./clientguide_client"
   end
