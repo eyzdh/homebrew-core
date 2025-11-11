@@ -30,10 +30,10 @@ class Qtvirtualkeyboard < Formula
   depends_on "pkgconf" => :build
 
   depends_on "hunspell"
-  depends_on "qtbase"
-  depends_on "qtdeclarative"
-  depends_on "qtmultimedia"
-  depends_on "qtsvg"
+  depends_on "eyzdh/core/qtbase"
+  depends_on "eyzdh/core/qtdeclarative"
+  depends_on "eyzdh/core/qtmultimedia"
+  depends_on "eyzdh/core/qtsvg"
 
   # TODO: preserve_rpath # https://github.com/orgs/Homebrew/discussions/2823
 
