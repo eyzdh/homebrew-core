@@ -22,7 +22,7 @@ class Qtshadertools < Formula
   depends_on "cmake" => :build
   depends_on "ninja" => :build
 
-  depends_on "qtbase"
+  depends_on "eyzdh/core/qtbase"
 
   # TODO: preserve_rpath # https://github.com/orgs/Homebrew/discussions/2823
 
