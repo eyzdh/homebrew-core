@@ -16,16 +16,6 @@ class Qt3d < Formula
     formula "qtbase"
   end
 
-  bottle do
-    rebuild 1
-    sha256 cellar: :any,                 arm64_tahoe:   "7c4070b5517cc9d66832b3f9f86a128552326891b12a1d0305a45863a215b559"
-    sha256 cellar: :any,                 arm64_sequoia: "f5eadd6340ec9eaff1fe237276ac1c96d92d00418781ce0193c54513ccb86794"
-    sha256 cellar: :any,                 arm64_sonoma:  "65a561bf7e4b9c141f098989d559b52774f7f333cddc278bcf491a1fd9bc2a8e"
-    sha256 cellar: :any,                 sonoma:        "67afad57e2f2d4a670ccd11ca69b605c98f6667a45fcda1cce8bada408ce8418"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "fb9d9961e488ac949eede9654228e1785304b592ba3077479ad06e6bcade7ae2"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "04cf1968db2f3e0b069b819de7666edc18283d45623c9df19156659f3490d91e"
-  end
-
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
   depends_on "vulkan-headers" => :build
