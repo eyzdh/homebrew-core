@@ -19,48 +19,52 @@ class Qt < Formula
   end
 
   depends_on "cmake" => :test
-  depends_on "pkgconf" => :test
-  depends_on "vulkan-headers" => :test
+depends_on "pkgconf" => :test
+depends_on "vulkan-headers" => :test
 
-  depends_on "qt3d"
-  depends_on "qt5compat"
-  depends_on "qtbase"
-  depends_on "qtcharts"
-  depends_on "qtconnectivity"
-  depends_on "qtdatavis3d"
-  depends_on "qtdeclarative"
-  depends_on "qtgraphs"
-  depends_on "qtgrpc"
-  depends_on "qthttpserver"
-  depends_on "qtimageformats"
-  depends_on "qtlanguageserver"
-  depends_on "qtlocation"
-  depends_on "qtlottie"
-  depends_on "qtmultimedia"
-  depends_on "qtnetworkauth"
-  depends_on "qtpositioning"
-  depends_on "qtquick3d"
-  depends_on "qtquick3dphysics"
-  depends_on "qtquickeffectmaker"
-  depends_on "qtquicktimeline"
-  depends_on "qtremoteobjects"
-  depends_on "qtscxml"
-  depends_on "qtsensors"
-  depends_on "qtserialbus"
-  depends_on "qtserialport"
-  depends_on "qtshadertools"
-  depends_on "qtspeech"
-  depends_on "qtsvg"
-  depends_on "qttools"
-  depends_on "qttranslations"
-  depends_on "qtvirtualkeyboard"
-  depends_on "qtwebchannel"
-  depends_on "qtwebsockets"
+depends_on "eyzdh/core/qt3d"
+depends_on "eyzdh/core/qt5compat"
+depends_on "eyzdh/core/qtbase"
+depends_on "eyzdh/core/qtcharts"
+depends_on "eyzdh/core/qtconnectivity"
+depends_on "eyzdh/core/qtdatavis3d"
+depends_on "eyzdh/core/qtdeclarative"
+depends_on "eyzdh/core/qtgraphs"
+depends_on "eyzdh/core/qtgrpc"
+depends_on "eyzdh/core/qthttpserver"
+depends_on "eyzdh/core/qtimageformats"
+depends_on "eyzdh/core/qtlanguageserver"
+depends_on "eyzdh/core/qtlocation"
+depends_on "eyzdh/core/qtlottie"
+depends_on "eyzdh/core/qtmultimedia"
+depends_on "eyzdh/core/qtnetworkauth"
+depends_on "eyzdh/core/qtpositioning"
+depends_on "eyzdh/core/qtquick3d"
+depends_on "eyzdh/core/qtquick3dphysics"
+depends_on "eyzdh/core/qtquickeffectmaker"
+depends_on "eyzdh/core/qtquicktimeline"
+depends_on "eyzdh/core/qtremoteobjects"
+depends_on "eyzdh/core/qtscxml"
+depends_on "eyzdh/core/qtsensors"
+depends_on "eyzdh/core/qtserialbus"
+depends_on "eyzdh/core/qtserialport"
+depends_on "eyzdh/core/qtshadertools"
+depends_on "eyzdh/core/qtspeech"
+depends_on "eyzdh/core/qtsvg"
+depends_on "eyzdh/core/qttools"
+depends_on "eyzdh/core/qttranslations"
+depends_on "eyzdh/core/qtvirtualkeyboard"
+depends_on "eyzdh/core/qtwebchannel"
+depends_on "eyzdh/core/qtwebsockets"
 
-  on_system :linux, macos: :sonoma_or_newer do
-    depends_on "qtwebengine"
-    depends_on "qtwebview"
-  end
+on_system :linux, macos: :sonoma_or_newer do
+  depends_on "eyzdh/core/qtwebengine"
+  depends_on "eyzdh/core/qtwebview"
+end
+
+on_linux do
+  depends_on "eyzdh/core/qtwayland"
+end
 
   on_linux do
     depends_on "qtwayland"
