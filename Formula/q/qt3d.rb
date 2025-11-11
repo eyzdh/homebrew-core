@@ -23,9 +23,9 @@ class Qt3d < Formula
   depends_on "pkgconf" => :test
 
   depends_on "assimp"
-  depends_on "qtbase"
-  depends_on "qtdeclarative"
-  depends_on "qtshadertools"
+  depends_on "eyzdh/core/qtbase"
+  depends_on "eyzdh/core/qtdeclarative"
+  depends_on "eyzdh/core/qtshadertools"
 
   # TODO: preserve_rpath # https://github.com/orgs/Homebrew/discussions/2823
 
