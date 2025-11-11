@@ -15,15 +15,6 @@ class Qtwebsockets < Formula
     formula "qtbase"
   end
 
-  bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "7c0745d53faad96232dc00ca9e99986c2fa8ef7dd93eafba68c5f9614f74dc00"
-    sha256 cellar: :any,                 arm64_sequoia: "51a3bd0223bc2472f370c60de5151366c15a52b9ef05d1df98076e871c84461c"
-    sha256 cellar: :any,                 arm64_sonoma:  "99965065d7ee4c646633336483a7ce97124f55658326017b13999de9afc26941"
-    sha256 cellar: :any,                 sonoma:        "2211cf78134662aa53afeda76d7445eb12d9d280cbe80ae2e7baa659f720fcb7"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "fbae2e1155b0b2ab9bcfebbf55c60501705c0f77862458fc8a021a1d4e1da9a5"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "35e652918f94cbdc8373635652e4bcabec4219b6548e8c3f61d53e922b65417c"
-  end
-
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
   depends_on "pkgconf" => :test
