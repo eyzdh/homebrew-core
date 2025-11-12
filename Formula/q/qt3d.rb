@@ -49,6 +49,7 @@
       args << "-DQT_NO_APPLE_SDK_AND_XCODE_CHECK=ON"
     end
 
+cmake_args = std_cmake_args.reject { |a| a.start_with?("-DCMAKE_OSX_SYSROOT=") }
 system "cmake", "-S", ".", "-B", "build", "-G", "Ninja", *cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build"
