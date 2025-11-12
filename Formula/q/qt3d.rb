@@ -49,8 +49,8 @@ class Qt3d < Formula
     end
 
     system "cmake", "-S", ".", "-B", "build", "-G", "Ninja",
-           "-DCMAKE_OSX_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX26.2.sdk",
-           *args, *std_cmake_args(find_framework: "FIRST")
+       "-DCMAKE_OSX_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX26.2.sdk",
+       *args, *std_cmake_args(find_framework: "FIRST", without_osx_sysroot: true)
 
     # Some config scripts will only find Qt in a "Frameworks" folder
     frameworks.install_symlink lib.glob("*.framework") if OS.mac?
