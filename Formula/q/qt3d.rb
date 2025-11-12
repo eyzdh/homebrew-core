@@ -48,16 +48,9 @@
       args << "-DQT_NO_APPLE_SDK_AND_XCODE_CHECK=ON"
     end
 
-system "cmake", "-S", ".", "-B", "build", "-G", "Ninja",
-       "-DCMAKE_OSX_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX26.2.sdk",
-       "-DCMAKE_INSTALL_PREFIX=#{prefix}",
-       "-DCMAKE_BUILD_TYPE=Release",
-       "-DCMAKE_FIND_FRAMEWORK=FIRST",
-       "-DCMAKE_VERBOSE_MAKEFILE=ON",
-       "-DBUILD_TESTING=OFF",
-       *args
-system "cmake", "--build", "build"
-system "cmake", "--install", "build"
+system "cmake", "-S", ".", "-B", "build", "-G", "Ninja", *cmake_args
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build"
 
     # Some config scripts will only find Qt in a "Frameworks" folder
     frameworks.install_symlink lib.glob("*.framework") if OS.mac?
