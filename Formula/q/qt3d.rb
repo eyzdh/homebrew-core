@@ -47,10 +47,15 @@ class Qt3d < Formula
       args << "-DQT_EXTRA_RPATHS=#{(HOMEBREW_PREFIX/"lib").relative_path_from(lib)}"
       args << "-DQT_NO_APPLE_SDK_AND_XCODE_CHECK=ON"
     end
-
-    system "cmake", "-S", ".", "-B", "build", "-G", "Ninja",
+    
+system "cmake", "-S", ".", "-B", "build", "-G", "Ninja",
        "-DCMAKE_OSX_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX26.2.sdk",
-       *args, *std_cmake_args(find_framework: "FIRST", without_osx_sysroot: true)
+       *args,
+       "-DCMAKE_INSTALL_PREFIX=#{prefix}",
+       "-DCMAKE_BUILD_TYPE=Release",
+       "-DCMAKE_FIND_FRAMEWORK=FIRST",
+       "-DCMAKE_VERBOSE_MAKEFILE=ON",
+       "-DBUILD_TESTING=OFF"
 
     # Some config scripts will only find Qt in a "Frameworks" folder
     frameworks.install_symlink lib.glob("*.framework") if OS.mac?
