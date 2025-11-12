@@ -21,6 +21,8 @@
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
   depends_on "pkgconf" => :test
+  depends_on "vulkan-headers" => :build
+  depends_on "vulkan-loader" => :build
 
   depends_on "assimp"
   depends_on "eyzdh/core/qtbase"
