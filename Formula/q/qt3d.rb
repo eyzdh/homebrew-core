@@ -15,10 +15,6 @@ class Qt3d < Formula
   livecheck do
     formula "qtbase"
   end
-
-  class Qt3d < Formula
-  env :std
-  …
     
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
@@ -51,7 +47,11 @@ class Qt3d < Formula
       args << "-DQT_EXTRA_RPATHS=#{(HOMEBREW_PREFIX/"lib").relative_path_from(lib)}"
       args << "-DQT_NO_APPLE_SDK_AND_XCODE_CHECK=ON"
     end
-    
+
+    class Qt3d < Formula
+  env :std
+  …
+      
 system "cmake", "-S", ".", "-B", "build", "-G", "Ninja",
        "-DCMAKE_OSX_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX26.2.sdk",
        "-DCMAKE_INSTALL_PREFIX=#{prefix}",
