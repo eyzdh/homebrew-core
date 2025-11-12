@@ -16,6 +16,10 @@ class Qt3d < Formula
     formula "qtbase"
   end
 
+  class Qt3d < Formula
+  env :std
+  …
+    
   depends_on "cmake" => [:build, :test]
   depends_on "ninja" => :build
   depends_on "vulkan-headers" => :build
