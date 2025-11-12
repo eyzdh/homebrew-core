@@ -100,9 +100,9 @@ class Qt3d < Formula
     ENV["LC_ALL"] = "en_US.UTF-8"
     ENV["QT_QPA_PLATFORM"] = "minimal" if OS.linux? && ENV["HOMEBREW_GITHUB_ACTIONS"]
 
-    system "cmake", "-S", ".", "-B", "cmake", "-DCMAKE_BUILD_RPATH=#{HOMEBREW_PREFIX}/lib"
-    system "cmake", "--build", "cmake"
-    system "./cmake/test"
+    system "cmake", "-S", ".", "-B", "build", "-G", "Ninja",
+           "-DCMAKE_OSX_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX26.2.sdk",
+           *args, *std_cmake_args(find_framework: "FIRST")
 
     ENV.delete "CPATH" if OS.mac?
     mkdir "qmake" do
