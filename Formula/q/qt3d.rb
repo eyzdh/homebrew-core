@@ -48,9 +48,9 @@ class Qt3d < Formula
       args << "-DQT_NO_APPLE_SDK_AND_XCODE_CHECK=ON"
     end
 
-    system "cmake", "-S", ".", "-B", "build", "-G", "Ninja", *args, *std_cmake_args(find_framework: "FIRST")
-    system "cmake", "--build", "build"
-    system "cmake", "--install", "build"
+    system "cmake", "-S", ".", "-B", "build", "-G", "Ninja",
+       "-DCMAKE_OSX_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX26.2.sdk",
+       *args, *std_cmake_args(find_framework: "FIRST")
 
     # Some config scripts will only find Qt in a "Frameworks" folder
     frameworks.install_symlink lib.glob("*.framework") if OS.mac?
@@ -100,9 +100,9 @@ class Qt3d < Formula
     ENV["LC_ALL"] = "en_US.UTF-8"
     ENV["QT_QPA_PLATFORM"] = "minimal" if OS.linux? && ENV["HOMEBREW_GITHUB_ACTIONS"]
 
-    system "cmake", "-S", ".", "-B", "build", "-G", "Ninja",
-           "-DCMAKE_OSX_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX26.2.sdk",
-           *args, *std_cmake_args(find_framework: "FIRST")
+    system "cmake", "-S", ".", "-B", "cmake", "-DCMAKE_BUILD_RPATH=#{HOMEBREW_PREFIX}/lib"
+    system "cmake", "--build", "cmake"
+    system "./cmake/test"
 
     ENV.delete "CPATH" if OS.mac?
     mkdir "qmake" do
