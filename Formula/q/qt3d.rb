@@ -1,5 +1,4 @@
   class Qt3d < Formula
-  env :std
     
   desc "Provides functionality for near-realtime simulation systems"
   homepage "https://www.qt.io/"
