@@ -1,4 +1,6 @@
-class Qt3d < Formula
+  class Qt3d < Formula
+  env :std
+    
   desc "Provides functionality for near-realtime simulation systems"
   homepage "https://www.qt.io/"
   url "https://download.qt.io/official_releases/qt/6.10/6.10.0/submodules/qt3d-everywhere-src-6.10.0.tar.xz"
@@ -48,10 +50,6 @@ class Qt3d < Formula
       args << "-DQT_NO_APPLE_SDK_AND_XCODE_CHECK=ON"
     end
 
-    class Qt3d < Formula
-  env :std
-  …
-      
 system "cmake", "-S", ".", "-B", "build", "-G", "Ninja",
        "-DCMAKE_OSX_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX26.2.sdk",
        "-DCMAKE_INSTALL_PREFIX=#{prefix}",
