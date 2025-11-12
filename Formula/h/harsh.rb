@@ -1,18 +1,18 @@
 class Harsh < Formula
   desc "Habit tracking for geeks"
   homepage "https://github.com/wakatara/harsh"
-  url "https://github.com/wakatara/harsh/archive/refs/tags/0.11.8.tar.gz"
-  sha256 "2b860af22ef69b4a7fdf9b27670eb5fbe7891c346b7615f97fb0618182ca14db"
+  url "https://github.com/wakatara/harsh/archive/refs/tags/0.11.9.tar.gz"
+  sha256 "0b8ebc8041a6b79c12734d6f4d7d5b411dcd979860b546f92b895e9b6c7bc8c3"
   license "MIT"
   head "https://github.com/wakatara/harsh.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "099a208d8b56c0e3fa36e56b56ce95e1923e77ea670681b4a103501f67e84adf"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "099a208d8b56c0e3fa36e56b56ce95e1923e77ea670681b4a103501f67e84adf"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "099a208d8b56c0e3fa36e56b56ce95e1923e77ea670681b4a103501f67e84adf"
-    sha256 cellar: :any_skip_relocation, sonoma:        "49cda60914be2810049d74ca30ff06e2b9af19646048e84bc3337168756acce0"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "8b3f71430b61caadf2992031f75cf32573eedf10a57eb97099624bc451af452f"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "9f5afc22ae7e8e14a29ad9c099ba500d5297768671977ddf5fe9df3967105396"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "5251d5d14ecab8f331fdf112093f3e80fa97c12ba436fa147cb79e793795c380"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "5251d5d14ecab8f331fdf112093f3e80fa97c12ba436fa147cb79e793795c380"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "5251d5d14ecab8f331fdf112093f3e80fa97c12ba436fa147cb79e793795c380"
+    sha256 cellar: :any_skip_relocation, sonoma:        "2c5a1b44bf0c99b4f536c640bbb923c49eb260768b5ab2a627f91e08346577a1"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "e2e6ec99cc645584f3e68c3f57912e456c9de2a1c7735b1e71e3153b9a39423f"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d26a853ae283497880c678d8863aa097e656aaa4229580189e6ad01f7da1e997"
   end
 
   depends_on "go" => :build

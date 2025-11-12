@@ -3,17 +3,17 @@ class Gamdl < Formula
 
   desc "Python CLI app for downloading Apple Music songs, music videos and post videos"
   homepage "https://github.com/glomatico/gamdl"
-  url "https://files.pythonhosted.org/packages/a4/e4/9349754fcfe8e377a9600484624cdb38aba95fd6b46f17282bc8659eec15/gamdl-2.7.3.tar.gz"
-  sha256 "3f5d45900e4f11a6bb2478052849396414b8c9cd1c342db43f58e08c15d72157"
+  url "https://files.pythonhosted.org/packages/5c/3a/3d89f32239607da9f8124b865d918987dbabc182c9fe0b3a8e17f5180ef9/gamdl-2.7.4.tar.gz"
+  sha256 "ba8bbb6d441ebac4f6f8e4bfb541f38f3756378b484f6378f68806071db07757"
   license "MIT"
 
   bottle do
-    sha256 cellar: :any,                 arm64_tahoe:   "3eb135ef1f1d249044876f2f1ede14b6817ecf9ec132ac5b7a1bc78b9aa2381a"
-    sha256 cellar: :any,                 arm64_sequoia: "51212d39564410f67002cadd736ed661182ce6a31ed6b4a7f5fc435609001e9d"
-    sha256 cellar: :any,                 arm64_sonoma:  "b97550d17dde2a4735d275b172b80b58bfd14c90c1a5cec7327b293c742c53db"
-    sha256 cellar: :any,                 sonoma:        "be59a7f21bee61097cedc126fb98043f915c9c7d1c00b6f2530a84f96c37e3f8"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "144c61695d938292dd4840c89b5a3289451e8c458a062bea197d6e769d08a1f3"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "2f98f32244e136e3e203de86c073d9415d0c915e8ce5667028b1dc308060e00e"
+    sha256 cellar: :any,                 arm64_tahoe:   "082d3dfba1bd79a36063f6787272c68da9f55210f4e06a6311493a4388107bd0"
+    sha256 cellar: :any,                 arm64_sequoia: "37c8adafad2fa6c3091edcae4abd620fc0ce0cac6337caba936050a61b6fee6f"
+    sha256 cellar: :any,                 arm64_sonoma:  "8b3db396a0f699c4a004dfd65571353033fea87a5ee1ad4e6925145a0faaea39"
+    sha256 cellar: :any,                 sonoma:        "7dcaeeaf0079e5ae779f005e5b8716ce719b44bdab62288e2afd189a5685d664"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "82a917271d4b3d289dbd041656de9877082c2de2b15fd76a5a389f6a6b712a88"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "3feb552b8d8f4d87654bd2c776f6a99a08b55a2665fa7cf44cf855e6b3863d0a"
   end
 
   depends_on "certifi" => :no_linkage
@@ -147,8 +147,8 @@ class Gamdl < Formula
   end
 
   resource "yt-dlp" do
-    url "https://files.pythonhosted.org/packages/08/70/cf4bd6c837ab0a709040888caa70d166aa2dfbb5018d1d5c983bf0b50254/yt_dlp-2025.10.22.tar.gz"
-    sha256 "db2d48133222b1d9508c6de757859c24b5cefb9568cf68ccad85dac20b07f77b"
+    url "https://files.pythonhosted.org/packages/cf/41/53ad8c6e74d6627bd598dfbb8ad7c19d5405e438210ad0bbaf1b288387e7/yt_dlp-2025.11.12.tar.gz"
+    sha256 "5f0795a6b8fc57a5c23332d67d6c6acf819a0b46b91a6324bae29414fa97f052"
   end
 
   def install
@@ -159,7 +159,7 @@ class Gamdl < Formula
     assert_match version.to_s, shell_output("#{bin}/gamdl --version")
 
     touch testpath/"cookies.txt"
-    assert_match "'./cookies.txt' does not look like a Netscape format cookies file",
+    assert_match "cookies.txt' does not look like a Netscape format cookies file",
                  shell_output("#{bin}/gamdl fake_url 2>&1", 1)
   end
 end
